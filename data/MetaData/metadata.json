@@ -1,0 +1,33 @@
+{
+  "service": "FHIR Converter API",
+  "version": "1.0",
+  "description": "Converts HL7v2, JSON, and CCDA payloads into FHIR using Liquid templates.",
+  "endpoints": [
+    {
+      "method": "POST",
+      "path": "/convert/hl7",
+      "description": "Converts HL7v2 text into FHIR JSON.",
+      "requestBody": "Raw HL7 v2 message (text/plain)",
+      "response": "FHIR Bundle JSON",
+      "notes": [
+        "HL7 message type auto-detected from MSH-9",
+        "Uses Hl7v2Processor",
+        "Templates under /data/Templates/Hl7v2"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/convert/json",
+      "description": "Converts a JSON object using JSON-to-FHIR templates.",
+      "requestBody": "JSON (application/json)",
+      "response": "FHIR Bundle JSON"
+    },
+    {
+      "method": "POST",
+      "path": "/convert/ccda",
+      "description": "Converts CCDA XML to FHIR.",
+      "requestBody": "CCDA XML (text/xml)",
+      "response": "FHIR Bundle JSON"
+    }
+  ]
+}
