@@ -13,6 +13,9 @@ ObservationDefinition_CriticalCodedValueSet_ID: A resource Id, used to fill "cri
     "resource":{
         "resourceType": "ObservationDefinition",
         "id":"{{ ID }}",
+        "meta": {
+            {% include 'DataType/meta'  SourceSystemName: SourceSystemName SourceSystemPath: SourceSystemPath HL7MessageCode: HL7MessageCode ExtensionIdentifierValue: ExtensionIdentifierValue %}
+        },
         "validCodedValueSet":
         {
             "reference":"{{ ObservationDefinition_ValidCodedValueSet_ID }}",

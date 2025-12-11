@@ -20,6 +20,9 @@ Procedure_Asserter_ID: A resource Id, used to fill "asserter.reference" property
     "resource":{
         "resourceType": "Procedure",
         "id":"{{ ID }}",
+        "meta": {
+            {% include 'DataType/meta'  SourceSystemName: SourceSystemName SourceSystemPath: SourceSystemPath HL7MessageCode: HL7MessageCode ExtensionIdentifierValue: ExtensionIdentifierValue %}
+        },
         "code":
         {
             {% if PR1.3 -%}

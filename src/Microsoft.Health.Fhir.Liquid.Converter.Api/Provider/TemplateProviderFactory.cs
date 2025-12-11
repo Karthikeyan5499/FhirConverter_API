@@ -8,11 +8,23 @@ namespace Microsoft.Health.Fhir.Liquid.Converter.Api.Provider
 
         public TemplateProviderFactory(IHostEnvironment env)
         {
-            // Move 2 dirs up
-            var root = Directory.GetParent(env.ContentRootPath)!.FullName;
-            root = Directory.GetParent(root)!.FullName;
+            string basePath;
 
-            _root = Path.Combine(root, "data", "Templates");
+            if (env.IsDevelopment())
+            {
+                // Local debug – move 2 directories up
+                var root = Directory.GetParent(env.ContentRootPath)!.FullName;
+                root = Directory.GetParent(root)!.FullName;
+
+                basePath = root;
+            }
+            else
+            {
+                // Non-development (Docker, Prod, Staging, etc.)
+                basePath = env.ContentRootPath;
+            }
+
+            _root = Path.Combine(basePath, "data", "Templates");
         }
 
         public ITemplateProvider GetProvider(string processorType)

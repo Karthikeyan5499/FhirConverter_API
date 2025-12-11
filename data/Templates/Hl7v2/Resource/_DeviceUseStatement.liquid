@@ -11,6 +11,9 @@ DeviceUseStatement_Device_ID: A resource Id used to fill "device.reference" prop
     "resource":{
         "resourceType": "DeviceUseStatement",
         "id":"{{ ID }}",
+        "meta": {
+            {% include 'DataType/meta'  SourceSystemName: SourceSystemName SourceSystemPath: SourceSystemPath HL7MessageCode: HL7MessageCode ExtensionIdentifierValue: ExtensionIdentifierValue %}
+        },
         "subject":
         {
             "reference":"{{ DeviceUseStatement_Subject_ID }}",

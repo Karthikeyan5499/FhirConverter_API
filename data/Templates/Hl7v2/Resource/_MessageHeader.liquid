@@ -60,17 +60,8 @@ MessageHeader_Response_Details_ID: A resource Id, used to fill "response.details
                 },
             }, 
         ],
-        "meta":
-        {
-            {% comment -%} Placeholder provided for customization by users. If left empty, it will be removed in post-processing. {% endcomment -%}
-            "security":
-            [
-                {% include 'DataType/STCoding' ST: MSH.8 -%},
-            ],
-            "tag":
-            [
-                {% include 'DataType/PT' PT: MSH.11 -%},
-            ], 
+        "meta": {
+            {% include 'DataType/meta' SourceSystemName: SourceSystemName SourceSystemPath: SourceSystemPath HL7MessageCode: HL7MessageCode ExtensionIdentifierValue: ExtensionIdentifierValue includeSecurity: 'DataType/STCoding' ST: MSH.8 %}
         },
         "eventCoding":
         {

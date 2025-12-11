@@ -23,7 +23,10 @@ ServiceRequest_Encounter_ID: A resource Id, used to fill "encounter.reference" p
     "resource":{
         "resourceType": "ServiceRequest",
         "id":"{{ ID }}",
-
+        "meta": {
+            {% include 'DataType/meta'  SourceSystemName: SourceSystemName SourceSystemPath: SourceSystemPath HL7MessageCode: HL7MessageCode ExtensionIdentifierValue: ExtensionIdentifierValue %}
+        },
+        
         {% if OBR_parent == null %} 
             {% if parentSegment or OBR_child %}
                 {% if parentSegment.5 -%}

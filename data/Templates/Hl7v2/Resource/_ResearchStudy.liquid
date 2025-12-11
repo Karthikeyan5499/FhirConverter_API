@@ -3,7 +3,10 @@
     "resource":{
         "resourceType": "ResearchStudy",
         "id":"{{ ID }}",
-
+        "meta": {
+            {% include 'DataType/meta'  SourceSystemName: SourceSystemName SourceSystemPath: SourceSystemPath HL7MessageCode: HL7MessageCode ExtensionIdentifierValue: ExtensionIdentifierValue %}
+        },
+        
         {% if CTI -%}
             "status":"active",
         {% endif -%}

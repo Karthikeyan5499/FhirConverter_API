@@ -14,6 +14,9 @@ Organization_ID_ORC_21: A resource Id, used to fill "organization.reference" pro
     "resource":{
         "resourceType": "PractitionerRole",
         "id":"{{ ID }}",
+        "meta": {
+            {% include 'DataType/meta'  SourceSystemName: SourceSystemName SourceSystemPath: SourceSystemPath HL7MessageCode: HL7MessageCode ExtensionIdentifierValue: ExtensionIdentifierValue %}
+        },
         {% include 'DataType/XCNPractitionerRole' XCN: PD1.4 -%}        
         {% include 'DataType/NDLPractitionerRole' NDL: OBR_32 -%}
         {% if OBR_34 %}

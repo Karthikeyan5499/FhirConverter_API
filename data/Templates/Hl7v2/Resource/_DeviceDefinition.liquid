@@ -11,6 +11,9 @@ DeviceDefinition_ParentDevice_ID: A resource Id used to fill "parentDevice.refer
     "resource":{
         "resourceType": "DeviceDefinition",
         "id":"{{ ID }}",
+        "meta": {
+            {% include 'DataType/meta'  SourceSystemName: SourceSystemName SourceSystemPath: SourceSystemPath HL7MessageCode: HL7MessageCode ExtensionIdentifierValue: ExtensionIdentifierValue %}
+        },
         "manufacturerReference":
         {
             "reference":"{{ DeviceDefinition_ManufacturerReference_ID }}",

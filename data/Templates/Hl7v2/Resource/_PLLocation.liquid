@@ -49,6 +49,9 @@
     "resource":{
         "resourceType": "Location",
         "id":"{{ locationId_PL_1 }}",
+        "meta": {
+            {% include 'DataType/meta'  SourceSystemName: SourceSystemName SourceSystemPath: SourceSystemPath HL7MessageCode: HL7MessageCode ExtensionIdentifierValue: ExtensionIdentifierValue %}
+        },
         {% if locationId_PL_8 -%}
         "partOf":{
             "reference":"Location/{{locationId_PL_8}}"

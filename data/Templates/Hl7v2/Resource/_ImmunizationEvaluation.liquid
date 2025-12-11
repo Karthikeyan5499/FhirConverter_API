@@ -11,6 +11,9 @@ ImmunizationEvaluation_ImmunizationEvent_ID: A resource Id, used to fill "refere
     "resource":{
         "resourceType": "ImmunizationEvaluation",
         "id":"{{ ID }}",
+        "meta": {
+            {% include 'DataType/meta'  SourceSystemName: SourceSystemName SourceSystemPath: SourceSystemPath HL7MessageCode: HL7MessageCode ExtensionIdentifierValue: ExtensionIdentifierValue %}
+        },
         "patient":
         {
             "reference":"{{ ImmunizationEvaluation_Patient_ID }}",

@@ -10,6 +10,9 @@
                 {% include 'DataType/EIIdentifier' EI: AUT.6 -%}
             },
         ],
+        "meta": {
+            {% include 'DataType/meta' SourceSystemName: SourceSystemName SourceSystemPath: SourceSystemPath HL7MessageCode: HL7MessageCode ExtensionIdentifierValue: ExtensionIdentifierValue %}
+        },
         "type": 
         { 
             {% if type1 == true %}

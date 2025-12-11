@@ -6,7 +6,9 @@
     "resource":{
         "resourceType": "Organization",
         "id":"{{ ID }}",
-
+        "meta": {
+            {% include 'DataType/meta'  SourceSystemName: SourceSystemName SourceSystemPath: SourceSystemPath HL7MessageCode: HL7MessageCode ExtensionIdentifierValue: ExtensionIdentifierValue %}
+        },
         {% if MSHHD1 -%}
             {% include 'DataType/HDOrganization' HD: MSHHD1 -%}
         {% endif -%}

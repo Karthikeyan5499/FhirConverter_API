@@ -3,6 +3,9 @@
     "resource":{
         "resourceType": "Linkage",
         "id":"{{ ID }}",
+        "meta": {
+            {% include 'DataType/meta'  SourceSystemName: SourceSystemName SourceSystemPath: SourceSystemPath HL7MessageCode: HL7MessageCode ExtensionIdentifierValue: ExtensionIdentifierValue %}
+        },
         "item" : [
             {% for p in PID.3.Repeats -%}
             {

@@ -15,6 +15,9 @@ Task_ReasonReference_ID: A resource Id, used to fill "reasonReference.reference"
     "resource":{
         "resourceType": "SupplyRequest",
         "id":"{{ ID }}",
+        "meta": {
+            {% include 'DataType/meta'  SourceSystemName: SourceSystemName SourceSystemPath: SourceSystemPath HL7MessageCode: HL7MessageCode ExtensionIdentifierValue: ExtensionIdentifierValue %}
+        },
 
         "identifier":
             [   

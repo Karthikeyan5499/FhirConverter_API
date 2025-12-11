@@ -10,4 +10,4 @@
 {% assign fullManufacturedMaterialId = manufacturedMaterialId | prepend: 'Medication/' -%}
 {% include 'Reference/MedicationAdministration/MedicationReference' ID: substanceAdministrationId, REF: fullManufacturedMaterialId -%}
 
-{{ relationship.substanceAdministration.entryRelationship | to_array | batch_render: 'Entry/HospitalDischargeMedication/entry_act_entryRelationship_substanceAdministration_entryRelationship', 'entryRelationship' }}
+{{ relationship.substanceAdministration.entryRelationship | to_array | batch_render: 'Entry/HospitalDischargeMedication/substanceAdministration_entryRelationship', 'entryRelationship' }}

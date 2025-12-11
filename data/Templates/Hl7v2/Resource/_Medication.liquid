@@ -3,7 +3,9 @@
     "resource":{
         "resourceType": "Medication",
         "id":"{{ ID }}",
-        
+        "meta": {
+            {% include 'DataType/meta'  SourceSystemName: SourceSystemName SourceSystemPath: SourceSystemPath HL7MessageCode: HL7MessageCode ExtensionIdentifierValue: ExtensionIdentifierValue %}
+        },
         "code" : { 
             {% if RXO.1 %}
                 {% include 'DataType/CWECodeableConcept' CWE: RXO.1  %}                

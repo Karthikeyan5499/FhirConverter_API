@@ -647,59 +647,8 @@ Practitioner_ID_PV1_52: A resource Id, used to fill "participant.individual.refe
              "system":"http://unitsofmeasure.org/",
             {% endif -%}
         },
-        "meta":{
-            "security":[
-                {
-                    {% include 'DataType/IDCoding' mapping: 'CodeSystem/EncounterSecurity', ID: PV2.22 -%}
-                },   
-                {% if ARV.2 %}
-                    {
-                        {% if ARV.2.1.Value == 'A' or ARV.2.1.Value == 'U' %}
-                            "code" : "LABEL",
-                            "display" : "assign security label",
-                            "system" : "http://terminology.hl7.org/CodeSystem/v3-ActCode",
-                        {% elsif ARV.2.1.Value == 'X' %}
-                            "code" : "PERSISTLABEL",
-                            "display" : "persist security label",
-                            "system" : "http://terminology.hl7.org/CodeSystem/v3-ActCode",
-                        {% elsif ARV.2.1.Value == 'D' %}
-                            "code" : "DELETELABEL",
-                            "display" : "Delete Security Label",
-                            "system" : "http://example.com/v2-to-fhir-converter/CodeSystem/additional-security-label",
-                        {% endif %}  
-                    },
-                {% endif %}
-                {% if ARV.3 %}
-                    {% include 'DataType/CWECodeableConceptRepeatable' mapping: 'CodeSystem/AccessRestrictionValue', CWE: ARV.3  %}
-                {% endif %}
-                {% if ARV.4 %}
-                    {% for arv_4 in ARV.4.Repeats %}
-                        {% include 'DataType/CWECodeableConceptRepeatable' mapping: 'CodeSystem/AccessRestrictionReason', CWE: arv_4 %}
-                    {% endfor %}   
-                {% endif %}
-                {% if ARV.5 %}
-                    {% for arv_5 in ARV.5.Repeats %}
-                        { 
-                            "system" : "http://example.com/v2-to-fhir-converter/CodeSystem/additional-security-label",
-                            "code" : "special-access-restriction-instructions",
-                            "display" : "{{arv_5.Value}}",
-                        },
-                    {% endfor %}   
-                {% endif %}
-                {% if ARV.6 %}
-                    {
-                        "extension":
-                        [
-                            {
-                                "url": "http://hl7.org/fhir/uv/v2mappings/StructureDefinition/access-restriction-range",    
-                                "valuePeriod": {
-                                    {% include 'DataType/DRPeriod' DR: ARV.6 %}
-                                },
-                            }
-                        ],
-                    },
-                {% endif %}
-            ],      
+        "meta": {
+            {% include 'DataType/meta' SourceSystemName: SourceSystemName SourceSystemPath: SourceSystemPath HL7MessageCode: HL7MessageCode ExtensionIdentifierValue: ExtensionIdentifierValue includeSecurity: 'DataType/EncounterMetaSecurity' ARV: ARV %}
         },
         {% if Root_Template -%}
         {% assign generationInstant = "{{ "" | now }}" -%}

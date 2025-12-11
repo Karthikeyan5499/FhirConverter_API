@@ -13,7 +13,10 @@ Specimen_Subject_ID: A resource Id, used to fill "subject.reference" property.
     "resource":{
         "resourceType": "Specimen",
         "id":"{{ ID }}",
-
+        "meta": {
+            {% include 'DataType/meta'  SourceSystemName: SourceSystemName SourceSystemPath: SourceSystemPath HL7MessageCode: HL7MessageCode ExtensionIdentifierValue: ExtensionIdentifierValue %}
+        },
+        
         "identifier": 
         [ 
             {

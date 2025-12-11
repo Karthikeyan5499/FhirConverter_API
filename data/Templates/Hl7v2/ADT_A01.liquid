@@ -28,6 +28,9 @@
     {
         "value":"{{ firstSegments.MSH.10.Value }}",
     },
+    "meta": {
+            {% include 'DataType/meta' lastUpdated: LastUpdatedVariable SourceSystemName: SourceSystemName SourceSystemPath: SourceSystemPath HL7MessageCode: HL7MessageCode ExtensionIdentifierValue: ExtensionIdentifierValue %}
+        },
     "id":"{{ bundleID }}",
     "entry": [
 
@@ -806,6 +809,9 @@
                 {% include 'Resource/Observation' PDA_9: firstSegments.PDA.9, Observation_Subject_ID: fullPatientId, ID: observation_PDA_9_ID -%}
             {% endif %}
         {% endif %}
+        
+        {% evaluate docRefFullHl7Id using 'ID/DocumentReference' HL7: firstSegments.MSH, baseId: bundleID -%}
+        {% include 'Resource/DocumentReferenceFullHL7' ID: docRefFullHl7Id hl7Base64: hl7Base64-%}
 
         {% if firstSegments.ACC -%}
             {% if firstSegments.ACC.7 -%}

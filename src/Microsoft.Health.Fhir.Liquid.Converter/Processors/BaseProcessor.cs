@@ -116,7 +116,16 @@ namespace Microsoft.Health.Fhir.Liquid.Converter.Processors
                 throw new RenderException(FhirConverterErrorCode.TemplateNotFound, string.Format(Resources.TemplateNotFound, rootTemplate));
             }
 
-            var dictionary = new Dictionary<string, object> { { DataKey, data } };
+            var dictionary = new Dictionary<string, object>
+            {
+            { DataKey, data },
+            { "SourceSystemName", TemplateGlobals.SourceSystemName },
+            { "SourceSystemPath", TemplateGlobals.SourceSystemPath },
+            { "HL7MessageCode", TemplateGlobals.HL7MessageCode },
+            { "LastUpdatedVariable", DateTime.UtcNow.ToString() },
+            { "ExtensionIdentifierValue", TemplateGlobals.ExtensionIdentifierValue },
+            { "hl7Base64", TemplateGlobals.Hl7Base64 },
+            };
             var context = CreateContext(templateProvider, dictionary, rootTemplate);
 
             // Step: Render Template

@@ -7,6 +7,7 @@ using Microsoft.Health.Fhir.Liquid.Converter.Helper;
 using Microsoft.Health.Fhir.Liquid.Converter.Models;
 using Microsoft.Health.Fhir.Liquid.Converter.Parsers;
 using Microsoft.Health.Fhir.Liquid.Converter.Processors;
+using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -29,18 +30,39 @@ builder.Services.AddSingleton<CcdaProcessor>();
 
 builder.Services.AddSingleton<IProcessorFactory, ProcessorFactory>();
 
+if (!builder.Environment.IsDevelopment())
+{
+    builder.WebHost.UseUrls("http://0.0.0.0:80");
+}
+
 var app = builder.Build();
+
+// Healthy
+app.MapGet("/healthy", () =>
+{
+    return Results.Text("Healthy!");
+});
 
 // MetaData
 app.MapGet("/metadata", ([FromServices] IHostEnvironment env) =>
 {
     var baseDir = env.ContentRootPath;
 
-    var root = Directory.GetParent(env.ContentRootPath)!.FullName;
-    root = Directory.GetParent(root)!.FullName;
+    string metadataPath;
 
-    // Path to the metadata.json file
-    var metadataPath = Path.Combine(root, "data", "MetaData", "metadata.json");
+    if (env.IsDevelopment())
+    {
+        // Local debug (use parent directory logic)
+        var root = Directory.GetParent(env.ContentRootPath)!.FullName;
+        root = Directory.GetParent(root)!.FullName;
+
+        metadataPath = Path.Combine(root, "data", "MetaData", "metadata.json");
+    }
+    else
+    {
+        // Production / staging / docker (use regular path)
+        metadataPath = Path.Combine(env.ContentRootPath, "data", "MetaData", "metadata.json");
+    }
 
     if (!File.Exists(metadataPath))
     {
@@ -66,6 +88,16 @@ app.MapPost("/convert/hl7", async (
         var engine = processorFactory.GetProcessor(ProcessorTypes.Hl7v2);
         var provider = templateFactory.GetProvider(ProcessorTypes.Hl7v2);
         var messageType = Helper.GetHl7TemplateType(input);
+        var sourceSystem = req.Headers["x-source-system"].FirstOrDefault() ?? "ADT";
+        DateTime now = DateTime.UtcNow;
+        string dynamicPath = $"Api/SourceSystems/{sourceSystem}/{now:yyyy}-{now:MM}-{now:dd}";
+        string hl7Encrypted = Convert.ToBase64String(Encoding.UTF8.GetBytes(input));
+
+        // Assign it to the global variable
+        TemplateGlobals.SourceSystemName = sourceSystem;
+        TemplateGlobals.SourceSystemPath = dynamicPath;
+        TemplateGlobals.HL7MessageCode = messageType;
+        TemplateGlobals.Hl7Base64 = hl7Encrypted;
 
         var result = engine.Convert(input, messageType, provider);
         return Results.Text(result, "application/json");

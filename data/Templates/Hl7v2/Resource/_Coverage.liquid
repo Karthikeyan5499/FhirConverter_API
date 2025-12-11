@@ -4,7 +4,9 @@
     "resource":{
         "resourceType": "Coverage",
         "id":"{{ ID }}",
-        
+        "meta": {
+            {% include 'DataType/meta'  SourceSystemName: SourceSystemName SourceSystemPath: SourceSystemPath HL7MessageCode: HL7MessageCode ExtensionIdentifierValue: ExtensionIdentifierValue %}
+        },
         "class":
         [
             {% if IN1.2.1 -%}

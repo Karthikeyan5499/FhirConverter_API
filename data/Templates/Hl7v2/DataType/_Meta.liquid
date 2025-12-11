@@ -1,0 +1,47 @@
+    "versionId": "1",
+
+    {% if lastUpdated %}
+    "lastUpdated": "{{ lastUpdated }}",
+    {% endif %}
+
+    {% if SourceSystemPath %}
+    "source": "{{ SourceSystemPath }}",
+    {% endif %}
+
+    "tag": [
+        {
+            "code": "{{ SourceSystemName }}",
+            "display": "SourceSystem-MessageType",
+            "system": "http://AETHER//HL7TOFHIRPipeline/metatag"
+        },
+        {
+            "code": "{{ HL7MessageCode }}",
+            "display": "MessageType-EventType",
+            "system": "http://terminology.hl7.org/CodeSystem/v2-0003"
+        },
+        {
+            "code": "AETHER",
+            "display": "Conversion-Platform",
+            "system": "http://AETHER//HL7TOFHIRPipeline/metatag"
+        }
+    ]
+
+    {% if ExtensionIdentifierValue %}
+    ,
+    "extension": [
+        {
+            "url": "http://hl7.org/fhir/StructureDefinition/artifact-identifier",
+            "valueIdentifier": {
+                "system": "urn:watermark-id",
+                "value": "{{ ExtensionIdentifierValue }}"
+            }
+        }
+    ]
+    {% endif %}
+
+    {% if includeSecurity %}
+    ,
+    "security": [
+        {% include includeSecurity %}
+    ]
+    {% endif %}

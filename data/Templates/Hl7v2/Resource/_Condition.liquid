@@ -36,6 +36,9 @@ Condition_Recorder_ID: A resource Id, used to fill "recorder.reference" property
                 },
             {% endif %}
         ],
+        "meta": {
+            {% include 'DataType/meta' SourceSystemName: SourceSystemName SourceSystemPath: SourceSystemPath HL7MessageCode: HL7MessageCode ExtensionIdentifierValue: ExtensionIdentifierValue %}
+        },
         "verificationStatus":
         {
             "coding":

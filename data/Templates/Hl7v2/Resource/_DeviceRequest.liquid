@@ -13,6 +13,9 @@ DeviceRequest_Performer_ID: A resource Id used to fill "performer.reference" pro
     "resource":{
         "resourceType": "DeviceRequest",
         "id":"{{ ID }}",
+        "meta": {
+            {% include 'DataType/meta'  SourceSystemName: SourceSystemName SourceSystemPath: SourceSystemPath HL7MessageCode: HL7MessageCode ExtensionIdentifierValue: ExtensionIdentifierValue %}
+        },
         "codeReference":
         {
             "reference":"{{ DeviceRequest_CodeReference_ID }}",

@@ -24,6 +24,9 @@ Device_ID_MSH_3: A resource Id, used to fill "entity.what.reference" property. T
     "resource":{
         "resourceType": "Provenance",
         "id":"{{ ID }}",
+        "meta": {
+            {% include 'DataType/meta'  SourceSystemName: SourceSystemName SourceSystemPath: SourceSystemPath HL7MessageCode: HL7MessageCode ExtensionIdentifierValue: ExtensionIdentifierValue %}
+        },
         
         {% if Root_Template -%}
         {% assign generationInstant = "{{ "" | now }}" -%}
