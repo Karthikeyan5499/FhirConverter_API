@@ -191,7 +191,7 @@ AllergyIntolerance_Asserter_ID: A resource Id, used to fill "asserter.reference"
         {% endif -%}
 
         "meta": {
-            {% include 'DataType/meta'  lastUpdated:IAM.26.value | format_as_date_time SourceSystemName: SourceSystemName SourceSystemPath: SourceSystemPath HL7MessageCode: HL7MessageCode ExtensionIdentifierValue: ExtensionIdentifierValue %}
+            {% include 'DataType/Meta'  lastUpdated:IAM.26.value | format_as_date_time SourceSystemName: SourceSystemName SourceSystemPath: SourceSystemPath HL7MessageCode: HL7MessageCode ExtensionIdentifierValue: ExtensionIdentifierValue %}
         },
 
         "patient":

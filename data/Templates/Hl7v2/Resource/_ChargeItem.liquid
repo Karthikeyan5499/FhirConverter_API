@@ -25,7 +25,7 @@
             {% endif -%}
         ],
         "meta": {
-            {% include 'DataType/meta' SourceSystemName: SourceSystemName SourceSystemPath: SourceSystemPath HL7MessageCode: HL7MessageCode ExtensionIdentifierValue: ExtensionIdentifierValue %}
+            {% include 'DataType/Meta' SourceSystemName: SourceSystemName SourceSystemPath: SourceSystemPath HL7MessageCode: HL7MessageCode ExtensionIdentifierValue: ExtensionIdentifierValue %}
         },
         {% unless FT1.4.2 -%}
             "occurrenceDateTime" : "{{ FT1.4.1.Value | format_as_date_time }}",

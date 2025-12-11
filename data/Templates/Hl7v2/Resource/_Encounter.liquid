@@ -648,7 +648,7 @@ Practitioner_ID_PV1_52: A resource Id, used to fill "participant.individual.refe
             {% endif -%}
         },
         "meta": {
-            {% include 'DataType/meta' SourceSystemName: SourceSystemName SourceSystemPath: SourceSystemPath HL7MessageCode: HL7MessageCode ExtensionIdentifierValue: ExtensionIdentifierValue includeSecurity: 'DataType/EncounterMetaSecurity' ARV: ARV %}
+            {% include 'DataType/Meta' SourceSystemName: SourceSystemName SourceSystemPath: SourceSystemPath HL7MessageCode: HL7MessageCode ExtensionIdentifierValue: ExtensionIdentifierValue includeSecurity: 'DataType/EncounterMetaSecurity' ARV: ARV %}
         },
         {% if Root_Template -%}
         {% assign generationInstant = "{{ "" | now }}" -%}

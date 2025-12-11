@@ -12,7 +12,7 @@
            "value":"{{ MSH.10.Value }}",
         },
         "meta": {
-            {% include 'DataType/meta' lastUpdated: LastUpdatedVariable SourceSystemName: SourceSystemName SourceSystemPath: SourceSystemPath HL7MessageCode: HL7MessageCode ExtensionIdentifierValue: ExtensionIdentifierValue %}
+            {% include 'DataType/Meta' lastUpdated: LastUpdatedVariable SourceSystemName: SourceSystemName SourceSystemPath: SourceSystemPath HL7MessageCode: HL7MessageCode ExtensionIdentifierValue: ExtensionIdentifierValue %}
         },
         {% if MSH.10 -%}
             "type":"message",

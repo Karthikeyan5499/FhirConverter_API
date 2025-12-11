@@ -43,7 +43,7 @@
         ],
         
         "meta": {
-            {% include 'DataType/meta' lastUpdated : TXA.8.Value | format_as_date_time SourceSystemName: SourceSystemName SourceSystemPath: SourceSystemPath HL7MessageCode: HL7MessageCode ExtensionIdentifierValue: ExtensionIdentifierValue %}
+            {% include 'DataType/Meta' lastUpdated : TXA.8.Value | format_as_date_time SourceSystemName: SourceSystemName SourceSystemPath: SourceSystemPath HL7MessageCode: HL7MessageCode ExtensionIdentifierValue: ExtensionIdentifierValue %}
         },
         "author" : [
             {% if TXA.9 -%}

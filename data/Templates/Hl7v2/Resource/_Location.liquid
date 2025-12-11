@@ -4,7 +4,7 @@
         "resourceType": "Location",
         "id":"{{ ID }}",
         "meta": {
-            {% include 'DataType/meta'  SourceSystemName: SourceSystemName SourceSystemPath: SourceSystemPath HL7MessageCode: HL7MessageCode ExtensionIdentifierValue: ExtensionIdentifierValue %}
+            {% include 'DataType/Meta'  SourceSystemName: SourceSystemName SourceSystemPath: SourceSystemPath HL7MessageCode: HL7MessageCode ExtensionIdentifierValue: ExtensionIdentifierValue %}
         },
         {% include 'DataType/CWELocation' CWE: RXD.30 -%}
         {% include 'DataType/PL' PL: ROL.13 -%}

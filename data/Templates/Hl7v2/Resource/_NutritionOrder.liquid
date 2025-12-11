@@ -5,7 +5,7 @@
         "resourceType": "NutritionOrder",
         "id":"{{ ID }}",
         "meta": {
-            {% include 'DataType/meta'  SourceSystemName: SourceSystemName SourceSystemPath: SourceSystemPath HL7MessageCode: HL7MessageCode ExtensionIdentifierValue: ExtensionIdentifierValue %}
+            {% include 'DataType/Meta'  SourceSystemName: SourceSystemName SourceSystemPath: SourceSystemPath HL7MessageCode: HL7MessageCode ExtensionIdentifierValue: ExtensionIdentifierValue %}
         },
         {% if ORC.5 -%}
             "status":"{{ ORC.5.Value | get_property: 'CodeSystem/OrderStatus', 'code' }}",  

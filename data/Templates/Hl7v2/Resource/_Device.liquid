@@ -14,7 +14,7 @@ Device_Parent_ID: A resource Id used to fill "parent.reference" property.
         "resourceType": "Device",
         "id":"{{ ID }}",
         "meta": {
-            {% include 'DataType/meta'  SourceSystemName: SourceSystemName SourceSystemPath: SourceSystemPath HL7MessageCode: HL7MessageCode ExtensionIdentifierValue: ExtensionIdentifierValue %}
+            {% include 'DataType/Meta'  SourceSystemName: SourceSystemName SourceSystemPath: SourceSystemPath HL7MessageCode: HL7MessageCode ExtensionIdentifierValue: ExtensionIdentifierValue %}
         },
         {% if MSH.3 -%}  
             {% include 'DataType/HDDevice' HD: MSH.3 -%}
